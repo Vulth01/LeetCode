@@ -1,0 +1,12 @@
+public class Solution {
+    public bool IsPalindrome(int x) {
+        string stringX = x.ToString();
+        char[] charsX = stringX.ToCharArray();
+        Array.Reverse(charsX);
+        string revStringX = new string(charsX);
+        if (stringX == revStringX){
+            return true;
+        }
+        return false;
+    }
+}
