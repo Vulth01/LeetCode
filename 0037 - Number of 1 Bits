@@ -1,0 +1,23 @@
+public class Solution {
+    public int HammingWeight(int n) {
+            
+        int c = 0;
+
+        while (n > 0){
+            c += n % 2;
+            n /= 2;
+        }
+        return c;
+
+        //LINQ solution:
+
+        // string val = Convert.ToString(n, 2);
+        
+        // int count = 0;
+        // foreach(char c in val){
+        //     if(c=='1') count++;
+        // }
+
+        // return count;
+    }
+}
