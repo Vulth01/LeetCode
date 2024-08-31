@@ -1,0 +1,72 @@
+//Had to use a solution for this one
+
+public class MyCalendarThree {
+    public class Node
+    {
+        public int start, mid, end, count;
+        public Node left, right;
+
+        public Node(int s, int e, int c)
+        {
+            start = s;
+            mid = -1;
+            end = e;
+            count = c;
+        }
+    }
+    public Node root;
+    int maxCount;
+    public void Add(int start, int end, Node root)
+    {
+        if(root.mid != -1)
+        {
+            if(start >= root.mid) Add(start, end, root.right);
+            else if(end <= root.mid) Add(start, end, root.left);
+            else
+            {
+                Add(start, root.mid, root.left);
+                Add(root.mid, end, root.right);
+            }
+            return;
+        }
+        if(start == root.start && end == root.end)
+            maxCount = Math.Max(maxCount, ++root.count);
+        else if(start == root.start)
+        {
+            root.mid = end;
+            root.left = new Node(start, root.mid, root.count+1);
+            root.right = new Node(root.mid, root.end, root.count);
+            maxCount = Math.Max(maxCount, root.count+1);
+        }
+        else if(end == root.end)
+        {
+            root.mid = start;
+            root.left = new Node(root.start, root.mid, root.count);
+            root.right = new Node(root.mid, end, root.count+1);
+            maxCount = Math.Max(maxCount, root.count+1);
+        }
+        else
+        {
+            root.mid = start;
+            root.left = new Node(root.start, root.mid, root.count);
+            root.right = new Node(root.mid, root.end, root.count);
+            Add(start, end, root.right);
+        }
+    }
+
+    public MyCalendarThree() {
+        root = new Node(0, 1000000000, 0);
+        maxCount = 0;
+    }
+    
+    public int Book(int startTime, int endTime) {
+        Add(startTime, endTime, root);
+        return maxCount;
+    }
+}
+
+/**
+ * Your MyCalendarThree object will be instantiated and called as such:
+ * MyCalendarThree obj = new MyCalendarThree();
+ * int param_1 = obj.Book(startTime,endTime);
+ */
