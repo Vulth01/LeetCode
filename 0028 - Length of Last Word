@@ -1,0 +1,15 @@
+public class Solution {
+    public int LengthOfLastWord(string s) {
+        string[] parts = s.Split(' ');
+        string lastWord = parts[parts.Length - 1];
+
+        while (lastWord.Length==0){
+            var foos = new List<string>(parts);
+            foos.RemoveAt(parts.Length - 1);
+            parts = foos.ToArray();
+            lastWord = parts[parts.Length - 1];
+        }
+
+        return lastWord.Length;
+    }
+}
