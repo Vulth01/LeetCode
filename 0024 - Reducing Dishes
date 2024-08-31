@@ -1,0 +1,18 @@
+//Who knew cooking could be so hard
+
+public class Solution {
+    public int MaxSatisfaction(int[] satisfaction) {
+        Array.Sort(satisfaction);
+        int total_satisfaction = 0;
+        int sum = 0;
+        for (int i = satisfaction.Length - 1; i >= 0; i--)
+        {
+            if (total_satisfaction > total_satisfaction + sum + satisfaction[i])
+                break;
+            sum += satisfaction[i];
+            total_satisfaction += sum;
+        }
+
+        return total_satisfaction;
+    }
+}
