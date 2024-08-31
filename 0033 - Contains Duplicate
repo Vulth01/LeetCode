@@ -1,0 +1,8 @@
+public class Solution {
+    public bool ContainsDuplicate(int[] nums) {
+        var uniqueVals = new HashSet<int>(nums);
+        return (uniqueVals.Count != nums.Length);
+    }
+}
+
+//Hashsets are pretty fun
