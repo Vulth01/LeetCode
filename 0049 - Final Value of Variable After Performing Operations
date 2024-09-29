@@ -1,0 +1,12 @@
+public class Solution {
+    public int FinalValueAfterOperations(string[] operations) {
+        int x = 0;
+        foreach(var word in operations){
+            if(word == "--X") x--;
+            if(word == "X++") x++;
+            if(word == "X--") x--;
+            if(word == "++X") x++;
+        }
+        return x;
+    }
+}
