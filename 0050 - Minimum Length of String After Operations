@@ -1,0 +1,17 @@
+public class Solution {
+    public int MinimumLength(string s) {
+        int len = s.Length;
+        int[] freq = new int[26];
+
+        foreach (char c in s) {
+            int curr = c - 'a';
+            freq[curr]++;  
+            
+            if (freq[curr] == 3) {
+                freq[curr] -= 2;
+                len -= 2;
+            }
+        }
+        return len; 
+    }
+}
